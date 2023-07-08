@@ -162,6 +162,7 @@ services:
       - "8083:8083"
     volumes:
       - ./data:/data
+      - $PWD/jars:/etc/kafka-connect/jars
     networks:
       - confluent
     environment:
@@ -183,7 +184,7 @@ services:
       CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
       CONNECT_LOG4J_LOGGERS: org.reflections=ERROR
-      CONNECT_PLUGIN_PATH: /usr/share/java
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/etc/kafka-connect/jars,/usr/share/confluent-hub-components"
       CONNECT_REST_HOST_NAME: "connect"
       CONNECT_REST_PORT: 8083
       CONNECT_CUB_KAFKA_TIMEOUT: 120
